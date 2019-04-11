@@ -1,14 +1,43 @@
-# splash_screen
+## Splash Screen
 
-A light weight package for flutter apps, that easily shows a splash screen with a nice fade animation, for a specific amount of time, also it executes peace of code that needs to be run while the splash screen is shown.
+### Using the package
+> Add dependency in **pubspec.yaml**
+```yaml
+dependencies:
+  splash_screen: ^0.0.1
+```
+### Things to do
+<ol>
+<li> Get a logo for your app</li>
+<li> Prepare what to execute while the splash screen is shown (initializing your db, shared preferences, firebase...etc) </li>
+<li> Screen to be shown after splash screen  </li>
+<li> Duration of Splash Screen  </li>
+</ol>
 
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+ Import the package
+```dart
+import 'package:splash_screen/splash_screen.dart';
+```
+Create an object of  **Function** that gets executed while splash screen is shown
+```dart
+Function duringSplash = () {
+  //Write your code here
+  ...
+};
+```
+Inside your **main** function, use *home* as **SplashScreen(_)**, the parameters are as follows:
+> imagePath: Path to your app-logo/image
+> home: Screen to be shown after splash
+> duringSplash: the function you have written above
+> duration: duration of splash screen in milliseconds
+```dart
+runApp(MaterialApp(
+  home: SplashScreen(
+      imagePath: 'your_logo_path',
+      home: YourHomeScreen(),
+      duringSplash: duringSplash,
+      duration: 2500),
+));
+```
+### Demo
+<img src="https://raw.githubusercontent.com/fayaz07/splash_screen/master/splash_demo.gif" width="230" height="440" alt="ProgressDialog Demo" />
