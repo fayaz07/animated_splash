@@ -1,4 +1,4 @@
-library splash_screen;
+library animated_splash;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

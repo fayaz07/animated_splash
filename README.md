@@ -22,7 +22,7 @@ dependencies:
 
  Import the package
 ```dart
-import 'package:splash_screen/splash_screen.dart';
+import 'package:animated_splash/animated_splash.dart';
 ```
 Create an object of  **Function** that gets executed while splash screen is shown
 ```dart
