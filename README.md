@@ -10,7 +10,7 @@ environment:
 > Add dependency in **pubspec.yaml**
 ```yaml
 dependencies:
-  splash_screen: ^0.0.1
+  animated_splash: ^0.0.1
 ```
 ### Things to do
 <ol>
