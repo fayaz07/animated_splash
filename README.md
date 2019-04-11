@@ -1,6 +1,12 @@
 ## Splash Screen
 
 ### Using the package
+
+```yaml
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+```
+
 > Add dependency in **pubspec.yaml**
 ```yaml
 dependencies:

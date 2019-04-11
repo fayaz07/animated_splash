@@ -9,7 +9,11 @@ String _imagePath;
 int _duration;
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({@required String imagePath,@required Widget home,@required Function duringSplash,@required int duration}) {
+  SplashScreen(
+      {@required String imagePath,
+      @required Widget home,
+      @required Function duringSplash,
+      @required int duration}) {
     _home = home;
     _duration = duration;
     _duringSplash = duringSplash;
@@ -55,7 +59,6 @@ class _SplashScreenState extends State<SplashScreen>
             opacity: _animation,
             child: Center(
                 child:
-                SizedBox(height: 250.0, child: Image.asset(_imagePath)))));
+                    SizedBox(height: 250.0, child: Image.asset(_imagePath)))));
   }
 }
-
