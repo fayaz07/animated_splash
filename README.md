@@ -1,4 +1,4 @@
-## Splash Screen
+## Animated Splash Screen
 
 ### Using the package
 
