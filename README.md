@@ -2,7 +2,7 @@
 
 ### Using the package
 
-Get the library[https://pub.dev/packages/animated_splash]
+[Get the library](https://pub.dev/packages/animated_splash)
 
 ```yaml
 environment:
@@ -12,7 +12,7 @@ environment:
 > Add dependency in **pubspec.yaml**
 ```yaml
 dependencies:
-  animated_splash: ^0.0.1
+  animated_splash: ^1.0.0
 ```
 ### Things to do
 <ol>
