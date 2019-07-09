@@ -1,6 +1,6 @@
 name: animated_splash
 description: A light weight package for flutter apps, that easily shows a splash screen with a nice fade animation.
-version: 1.0.0
+version: 1.0.1
 author: Fayaz<fayazfz07@gmail.com>
 homepage: https://github.com/fayaz07/splash_screen
 
