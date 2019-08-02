@@ -13,6 +13,8 @@ enum AnimatedSplashType { StaticDuration, BackgroundProcess }
 
 Map<dynamic, Widget> _outputAndHome = {};
 
+Color _backgroundColor = Colors.white;
+
 class AnimatedSplash extends StatefulWidget {
   AnimatedSplash(
       {@required String imagePath,
@@ -20,7 +22,7 @@ class AnimatedSplash extends StatefulWidget {
       Function customFunction,
       int duration,
       AnimatedSplashType type,
-      Map<dynamic, Widget> outputAndHome}) {
+      Map<dynamic, Widget> outputAndHome, Color backgroundColor}) {
     assert(duration != null);
     assert(home != null);
     assert(imagePath != null);
@@ -31,6 +33,7 @@ class AnimatedSplash extends StatefulWidget {
     _imagePath = imagePath;
     _runfor = type;
     _outputAndHome = outputAndHome;
+    _backgroundColor = backgroundColor;
   }
 
   @override
@@ -69,7 +72,6 @@ class _AnimatedSplashState extends State<AnimatedSplash>
     _runfor == AnimatedSplashType.BackgroundProcess
         ? Future.delayed(Duration.zero).then((value) {
             var res = _customFunction();
-            //print("$res+${_outputAndHome[res]}");
             Future.delayed(Duration(milliseconds: _duration)).then((value) {
               Navigator.of(context).pushReplacement(CupertinoPageRoute(
                   builder: (BuildContext context) => _outputAndHome[res]));
@@ -81,7 +83,7 @@ class _AnimatedSplashState extends State<AnimatedSplash>
           });
 
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: _backgroundColor,
         body: FadeTransition(
             opacity: _animation,
             child: Center(

@@ -12,7 +12,7 @@ environment:
 > Add dependency in **pubspec.yaml**
 ```yaml
 dependencies:
-  animated_splash: ^1.0.0
+  animated_splash: ^1.0.1
 ```
 ### Things to do
 <ol>
