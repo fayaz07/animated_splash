@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 
 Widget _home;
 Function _customFunction;
-String _imagePath;
+Widget _body;
 int _duration;
 AnimatedSplashType _runfor;
 
@@ -13,27 +13,23 @@ enum AnimatedSplashType { StaticDuration, BackgroundProcess }
 
 Map<dynamic, Widget> _outputAndHome = {};
 
-Color _backgroundColor = Colors.white;
-
 class AnimatedSplash extends StatefulWidget {
-  AnimatedSplash(
-      {@required String imagePath,
-      @required Widget home,
-      Function customFunction,
-      int duration,
-      AnimatedSplashType type,
-      Map<dynamic, Widget> outputAndHome, Color backgroundColor}) {
+  AnimatedSplash({@required Widget body,
+    @required Widget home,
+    Function customFunction,
+    int duration,
+    AnimatedSplashType type,
+    Map<dynamic, Widget> outputAndHome}) {
     assert(duration != null);
     assert(home != null);
-    assert(imagePath != null);
+    assert(body != null);
 
     _home = home;
     _duration = duration;
     _customFunction = customFunction;
-    _imagePath = imagePath;
+    _body = body;
     _runfor = type;
     _outputAndHome = outputAndHome;
-    _backgroundColor = backgroundColor;
   }
 
   @override
@@ -71,23 +67,23 @@ class _AnimatedSplashState extends State<AnimatedSplash>
   Widget build(BuildContext context) {
     _runfor == AnimatedSplashType.BackgroundProcess
         ? Future.delayed(Duration.zero).then((value) {
-            var res = _customFunction();
-            Future.delayed(Duration(milliseconds: _duration)).then((value) {
-              Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                  builder: (BuildContext context) => _outputAndHome[res]));
-            });
-          })
+      var res = _customFunction();
+      //print("$res+${_outputAndHome[res]}");
+      Future.delayed(Duration(milliseconds: _duration)).then((value) {
+        Navigator.of(context).pushReplacement(CupertinoPageRoute(
+            builder: (BuildContext context) => _outputAndHome[res]));
+      });
+    })
         : Future.delayed(Duration(milliseconds: _duration)).then((value) {
-            Navigator.of(context).pushReplacement(
-                CupertinoPageRoute(builder: (BuildContext context) => _home));
-          });
+      Navigator.of(context).pushReplacement(
+          CupertinoPageRoute(builder: (BuildContext context) => _home));
+    });
 
     return Scaffold(
-        backgroundColor: _backgroundColor,
-        body: FadeTransition(
-            opacity: _animation,
-            child: Center(
-                child:
-                    SizedBox(height: 250.0, child: Image.asset(_imagePath)))));
+      backgroundColor: Colors.white,
+      body: FadeTransition(
+        opacity: _animation,
+        child: Center(
+          child:_body)));
   }
 }
