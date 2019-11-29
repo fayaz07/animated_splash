@@ -2,27 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
 
 void main() {
-  Function duringSplash = () {
+  Future<Widget> customFunction() {
     print('Something background process');
     int a = 123 + 23;
     print(a);
 
     if (a > 100)
-      return 1;
+      return Future.value(Home());
     else
-      return 2;
-  };
-
-  Map<int, Widget> op = {1: Home(), 2: HomeSt()};
+      return Future.value(HomeSt());
+  }
 
   runApp(MaterialApp(
-    home: AnimatedSplash(
+    home: AnimatedSplash.styled(
+      customFunction: customFunction(),
       imagePath: 'assets/flutter_icon.png',
-      home: Home(),
-      customFunction: duringSplash,
-      duration: 2500,
-      type: AnimatedSplashType.BackgroundProcess,
-      outputAndHome: op,
+      style: AnimationStyle.CircularReveal,
+      curve: Curves.linear,
     ),
   ));
 }
@@ -33,6 +29,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<Widget> _backgroundProcess;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,4 +60,3 @@ class _HomeStState extends State<HomeSt> {
                 style: TextStyle(color: Colors.black, fontSize: 20.0))));
   }
 }
-
