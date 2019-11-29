@@ -140,7 +140,8 @@ class _AnimatedSplashState extends State<AnimatedSplash>
     if (widget._animationStyle != AnimationStyle.CircularReveal) {
       _animation.removeStatusListener(defaultAnimationsStatusListener);
       _animationController.reset();
-    } else {
+    }
+    if(widget._animationStyle == AnimationStyle.CircularReveal) {
       scaleAnim.removeListener(circularAnimationListener);
     }
     super.dispose();
@@ -163,6 +164,8 @@ class _AnimatedSplashState extends State<AnimatedSplash>
 
   _goBackground() => widget._backgroundProcess.then((Widget home) {
         debugPrint("Background process completed its execution");
+        if(widget._configStyle == Config.Custom)
+          _navigator(home);
         if (_isAnimCompleted) {
           debugPrint(
               "Animation completed before Background process, navigating to $home");

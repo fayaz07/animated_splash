@@ -14,11 +14,12 @@ void main() {
   }
 
   runApp(MaterialApp(
-    home: AnimatedSplash.styled(
+    home: AnimatedSplash.custom(
       customFunction: customFunction(),
-      imagePath: 'assets/flutter_icon.png',
-      style: AnimationStyle.CircularReveal,
-      curve: Curves.linear,
+      child: Image.asset('assets/flutter_icon.png'),
+//      imagePath: 'assets/flutter_icon.png',
+//      style: AnimationStyle.Still,
+//      curve: Curves.linear,
     ),
   ));
 }
