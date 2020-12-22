@@ -1,63 +1,93 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
 
+Future doSomethingInBackground() async {
+  debugPrint("doing bg task");
+  await Future.delayed(Duration(seconds: 3));
+  debugPrint("bg task done");
+}
+
 void main() {
-  Future<Widget> customFunction() {
-    print('Something background process');
-    int a = 123 + 23;
-    print(a);
-
-    if (a > 100)
-      return Future.value(Home());
-    else
-      return Future.value(HomeSt());
-  }
-
-  runApp(MaterialApp(
-    home: AnimatedSplash.custom(
-      customFunction: customFunction(),
-      child: Image.asset('assets/flutter_icon.png'),
-//      imagePath: 'assets/flutter_icon.png',
-//      style: AnimationStyle.Still,
-//      curve: Curves.linear,
+  runApp(
+    MaterialApp(
+      home: MySplashScreen(),
     ),
-  ));
+  );
 }
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
+class MySplashScreen extends StatelessWidget {
+  Widget _stillSplashExample(BuildContext context) {
+    return AnimatedSplash(
+      imagePath: 'assets/flutter_icon.png',
+      style: AnimationStyle.Still,
+      curve: Curves.linear,
+      doInBackground: doSomethingInBackground(),
+      onAnimationCompleted: () {
+        debugPrint("animation is completed");
+      },
+      onReadyToGoNextScreen: () => moveToHomeScreen(context),
+    );
+  }
 
-class _HomeState extends State<Home> {
-  Future<Widget> _backgroundProcess;
+  void moveToHomeScreen(BuildContext context) {
+    print("moving to home screen");
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(maintainState: false, builder: (context) => Home()));
+  }
+
+  Widget _fadeSplashExample(BuildContext context) {
+    return AnimatedSplash(
+      imagePath: 'assets/flutter_icon.png',
+      style: AnimationStyle.FadeIn,
+      curve: Curves.linear,
+      doInBackground: doSomethingInBackground(),
+      onAnimationCompleted: () {
+        debugPrint("animation is completed");
+      },
+
+    );
+  }
+
+  Widget _circularRevealSplashExample(BuildContext context) {
+    return AnimatedSplash(
+      imagePath: 'assets/flutter_icon.png',
+      style: AnimationStyle.FadeIn,
+      curve: Curves.linear,
+      backgroundColor: Colors.indigoAccent,
+      doInBackground: doSomethingInBackground(),
+      onAnimationCompleted: () {
+        debugPrint("animation is completed");
+      },
+      onReadyToGoNextScreen: () => moveToHomeScreen(context),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-        ),
-        body: Center(
-            child: Text('My Cool App',
-                style: TextStyle(color: Colors.black, fontSize: 20.0))));
+    return _circularRevealSplashExample(context);
   }
 }
 
-class HomeSt extends StatefulWidget {
-  @override
-  _HomeStState createState() => _HomeStState();
-}
-
-class _HomeStState extends State<HomeSt> {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset("assets/cat.jpg"),
+            SizedBox(height: 8.0),
+            Text(
+              'Get outta here, you hoooman',
+              style: TextStyle(color: Colors.black, fontSize: 20.0),
+            ),
+          ],
         ),
-        body: Center(
-            child: Text('My Cool App home page 2',
-                style: TextStyle(color: Colors.black, fontSize: 20.0))));
+      ),
+    );
   }
 }

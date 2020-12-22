@@ -1,70 +1,16 @@
-```dart
+# example
 
-import 'package:flutter/material.dart';
-import 'package:animated_splash/animated_splash.dart';
+A new Flutter application.
 
-void main() {
-  Function duringSplash = () {
-    print('Something background process');
-    int a = 123 + 23;
-    print(a);
+## Getting Started
 
-    if (a > 100)
-      return 1;
-    else
-      return 2;
-  };
+This project is a starting point for a Flutter application.
 
-  Map<int, Widget> op = {1: Home(), 2: HomeSt()};
+A few resources to get you started if this is your first Flutter project:
 
-  runApp(MaterialApp(
-    home: AnimatedSplash(
-      imagePath: 'assets/flutter_icon.png',
-      home: Home(),
-      customFunction: duringSplash,
-      duration: 2500,
-      type: AnimatedSplashType.BackgroundProcess,
-      outputAndHome: op,
-    ),
-  ));
-}
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-        ),
-        body: Center(
-            child: Text('My Cool App',
-                style: TextStyle(color: Colors.black, fontSize: 20.0))));
-  }
-}
-
-class HomeSt extends StatefulWidget {
-  @override
-  _HomeStState createState() => _HomeStState();
-}
-
-class _HomeStState extends State<HomeSt> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
-        ),
-        body: Center(
-            child: Text('My Cool App home page 2',
-                style: TextStyle(color: Colors.black, fontSize: 20.0))));
-  }
-}
-
-
-
-```
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
