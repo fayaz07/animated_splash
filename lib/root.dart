@@ -20,17 +20,17 @@ class AnimatedSplash extends StatelessWidget {
   final String imagePath;
   final Color backgroundColor;
   final VoidCallback onAnimationCompleted;
-  final Future<dynamic> doInBackground;
-  final VoidCallback onReadyToGoNextScreen;
+  final Future<dynamic>? doInBackground;
+  final VoidCallback? onReadyToGoNextScreen;
   final Size logoSize;
   final Duration animDuration;
   final Curve curve;
   final Color circularRevealColor;
 
   const AnimatedSplash({
-    Key key,
-    this.imagePath,
-    this.onAnimationCompleted,
+    Key? key,
+    required this.imagePath,
+    required this.onAnimationCompleted,
     this.style = defaultAnimationStyle,
     this.backgroundColor = defaultBackgroundColor,
     this.logoSize = defaultLogoSize,
@@ -39,9 +39,7 @@ class AnimatedSplash extends StatelessWidget {
     this.doInBackground,
     this.onReadyToGoNextScreen,
     this.circularRevealColor = defaultCircularRevealColor,
-  })  : assert(imagePath != null),
-        assert(onAnimationCompleted != null),
-        super(key: key);
+  }) : super(key: key);
 
   Widget _body() {
     Widget _child = SizedBox();
@@ -138,7 +136,7 @@ class AnimatedSplash extends StatelessWidget {
     debugPrint("[Animated Splash] ready to go to next screen");
     _disposeStream();
     Future.delayed(Duration(milliseconds: 50))
-        .then((value) => onReadyToGoNextScreen());
+        .then((value) => onReadyToGoNextScreen!());
   }
 
   /*
