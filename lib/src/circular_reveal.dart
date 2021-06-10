@@ -9,12 +9,12 @@ class CircularRevealSplashScreen extends StatefulWidget {
   final Color backgroundColor;
 
   const CircularRevealSplashScreen(
-      {Key key,
-      this.onAnimationCompleted,
-      this.child,
-      this.duration,
-      this.animCurve,
-      this.backgroundColor})
+      {Key? key,
+      required this.onAnimationCompleted,
+      required this.child,
+      required this.duration,
+      required this.animCurve,
+      required this.backgroundColor})
       : super(key: key);
 
   @override
@@ -24,13 +24,13 @@ class CircularRevealSplashScreen extends StatefulWidget {
 
 class _CircularRevealSplashScreenState extends State<CircularRevealSplashScreen>
     with TickerProviderStateMixin {
-  Animation scaleAnim, radiusAnim;
-  AnimationController scaleAnimController, radiusAnimController;
+  late Animation scaleAnim, radiusAnim;
+  late AnimationController scaleAnimController, radiusAnimController;
 
   // final animDuration = Duration(milliseconds: 150);
   bool initialCase = true;
   MaterialType materialType = MaterialType.circle;
-  double _height, _width;
+  double? _height, _width;
 
   @override
   void initState() {
@@ -88,12 +88,12 @@ class _CircularRevealSplashScreenState extends State<CircularRevealSplashScreen>
             builder: (context, child) {
               return Center(
                 child: Container(
-                  width: _width * scaleAnim.value,
-                  height: _height * scaleAnim.value,
+                  width: _width! * scaleAnim.value,
+                  height: _height! * scaleAnim.value,
                   decoration: BoxDecoration(
                     color: widget.backgroundColor,
                     borderRadius:
-                        BorderRadius.circular(_width * radiusAnim.value),
+                        BorderRadius.circular(_width! * radiusAnim.value),
                   ),
                 ),
               );

@@ -8,11 +8,11 @@ class ScaleSplashScreen extends StatefulWidget {
   final Curve animCurve;
 
   const ScaleSplashScreen(
-      {Key key,
-      this.onAnimationCompleted,
-      this.child,
-      this.duration,
-      this.animCurve})
+      {Key? key,
+      required this.onAnimationCompleted,
+      required this.child,
+      required this.duration,
+      required this.animCurve})
       : super(key: key);
 
   @override
@@ -21,8 +21,8 @@ class ScaleSplashScreen extends StatefulWidget {
 
 class _ScaleSplashScreenState extends State<ScaleSplashScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _ScaleSplashScreenState extends State<ScaleSplashScreen>
   @override
   Widget build(BuildContext context) {
     return SizeTransition(
-      sizeFactor: _animation,
+      sizeFactor: _animation as Animation<double>,
       child: widget.child,
     );
   }

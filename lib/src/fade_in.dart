@@ -8,11 +8,11 @@ class FadeInSplashScreen extends StatefulWidget {
   final Curve animCurve;
 
   const FadeInSplashScreen(
-      {Key key,
-      this.onAnimationCompleted,
-      this.child,
-      this.duration,
-      this.animCurve})
+      {Key? key,
+      required this.onAnimationCompleted,
+      required this.child,
+      required this.duration,
+      required this.animCurve})
       : super(key: key);
 
   @override
@@ -21,11 +21,8 @@ class FadeInSplashScreen extends StatefulWidget {
 
 class _FadeInSplashScreenState extends State<FadeInSplashScreen>
     with SingleTickerProviderStateMixin {
-
-  AnimationController _animationController;
-  Animation _animation;
-
-
+  late AnimationController _animationController;
+  late Animation _animation;
 
   @override
   void initState() {
@@ -48,14 +45,13 @@ class _FadeInSplashScreenState extends State<FadeInSplashScreen>
     _animation.removeStatusListener(defaultAnimationsStatusListener);
     _animationController.reset();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FadeTransition(
-        opacity: _animation,
+        opacity: _animation as Animation<double>,
         child: widget.child,
       ),
     );
