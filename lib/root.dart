@@ -22,8 +22,8 @@ class AnimatedSplash extends StatelessWidget {
   final VoidCallback onAnimationCompleted;
   final Future<dynamic>? doInBackground;
   final VoidCallback? onReadyToGoNextScreen;
-  final Size logoSize;
-  final Duration animDuration;
+  final Size imageSize;
+  final Duration duration;
   final Curve curve;
   final Color circularRevealColor;
 
@@ -33,8 +33,8 @@ class AnimatedSplash extends StatelessWidget {
     required this.onAnimationCompleted,
     this.style = defaultAnimationStyle,
     this.backgroundColor = defaultBackgroundColor,
-    this.logoSize = defaultLogoSize,
-    this.animDuration = defaultAnimDuration,
+    this.imageSize = defaultLogoSize,
+    this.duration = defaultAnimationDuration,
     this.curve = defaultAnimationCurve,
     this.doInBackground,
     this.onReadyToGoNextScreen,
@@ -46,15 +46,15 @@ class AnimatedSplash extends StatelessWidget {
 
     _child = Image.asset(
       imagePath,
-      height: logoSize.height,
-      width: logoSize.width,
+      height: imageSize.height,
+      width: imageSize.width,
     );
 
     switch (style) {
       case AnimationStyle.CircularReveal:
         _child = CircularRevealSplashScreen(
           animCurve: curve,
-          duration: animDuration,
+          duration: duration,
           backgroundColor: circularRevealColor,
           onAnimationCompleted: _onAnimationFinished,
           child: _child,
@@ -63,7 +63,7 @@ class AnimatedSplash extends StatelessWidget {
       case AnimationStyle.FadeIn:
         _child = FadeInSplashScreen(
           animCurve: curve,
-          duration: animDuration,
+          duration: duration,
           onAnimationCompleted: _onAnimationFinished,
           child: _child,
         );
@@ -77,7 +77,7 @@ class AnimatedSplash extends StatelessWidget {
       case AnimationStyle.Scale:
         _child = ScaleSplashScreen(
           animCurve: curve,
-          duration: animDuration,
+          duration: duration,
           onAnimationCompleted: _onAnimationFinished,
           child: _child,
         );
@@ -150,7 +150,7 @@ class AnimatedSplash extends StatelessWidget {
   }
 
   /*
-   *  This will execute, user's background task and adds the
+   *  This will execute, user's background task and adds an
    *  event to the stream
    */
   void _finishUserAssignedBGWork() async {
